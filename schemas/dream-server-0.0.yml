@@ -1,0 +1,57 @@
+openapi: 3.0.1
+info:
+  title: Dream server
+  description: Server for the dream purposes.
+  version: "0.0"
+paths:
+  /dreams:
+    get:
+      operationId: index
+      responses:
+        "200":
+          description: index 200 response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DreamDto'
+  /dreams/{id}:
+    get:
+      operationId: one
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: one 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DreamDto'
+  /hello:
+    get:
+      operationId: index_1
+      responses:
+        "200":
+          description: index_1 200 response
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    DreamDto:
+      required:
+      - description
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
