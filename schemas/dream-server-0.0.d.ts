@@ -21,6 +21,8 @@ export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
     DreamDto: {
+      /** Format: int64 */
+      id: number;
       title: string;
       description: string;
     };

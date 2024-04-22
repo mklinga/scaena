@@ -1,6 +1,7 @@
 import DreamList from "./components/DreamList";
 
 import type { DreamDto } from '../types';
+import { H1 } from "./components/Headers";
 
 async function getHelloMessage() {
   const response = await fetch('http://localhost:8080/hello', { cache: 'no-store' });
@@ -27,8 +28,8 @@ export default async function Home() {
   const dreams = await getListOfDreams() as DreamDto[];
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>{message}</h1>
+    <main className="min-h-screen p-24">
+      <H1>{message}</H1>
       <DreamList dreams={dreams} />
     </main>
   );
