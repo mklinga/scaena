@@ -14,7 +14,7 @@ async function getHelloMessage() {
 }
 
 async function getListOfDreams() {
-  const response = await fetch('http://localhost:8080/dreams', { cache: 'no-store' });
+  const response = await fetch('http://localhost:8080/dreams', { cache: 'no-store', next: { tags: ['dreams'] } });
 
   if (response.ok) {
     return response.json();
