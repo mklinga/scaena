@@ -1,7 +1,7 @@
-import DreamList from "./components/DreamList";
+import DreamList from './components/DreamList';
 
 import type { DreamDto } from '../types';
-import { H1 } from "./components/Headers";
+import { H1 } from './components/Headers';
 
 async function getHelloMessage() {
   const response = await fetch('http://localhost:8080/hello', { cache: 'no-store' });
@@ -10,7 +10,7 @@ async function getHelloMessage() {
     return response.text();
   }
 
-  throw new Error("Server did not respond correctly!");
+  throw new Error('Server did not respond correctly!');
 }
 
 async function getListOfDreams() {
@@ -20,12 +20,12 @@ async function getListOfDreams() {
     return response.json();
   }
 
-  throw new Error("Server did not respond correctly!");
+  throw new Error('Server did not respond correctly!');
 }
 
 export default async function Home() {
   const message = await getHelloMessage();
-  const dreams = await getListOfDreams() as DreamDto[];
+  const dreams = (await getListOfDreams()) as DreamDto[];
 
   return (
     <main className="min-h-screen p-24">
