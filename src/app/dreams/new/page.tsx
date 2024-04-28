@@ -1,3 +1,5 @@
+import { SuccessButton } from '@/app/components/Button';
+import { TextArea, TextInput } from '@/app/components/Inputs';
 import { revalidateTag } from 'next/cache';
 
 export default function NewDream() {
@@ -12,23 +14,21 @@ export default function NewDream() {
     });
 
     revalidateTag('dreams');
-    console.log({ result: await result.json() });
   }
 
   return (
-    <main className="min-h-screen p-24">
-      <form action={createDream}>
-        <label htmlFor="title" className="p-5">
+    <form action={createDream}>
+      <div className="flex flex-col">
+        <label htmlFor="title" className="py-5">
           Title
         </label>
-        <input name="title" type="text" />
-        <br />
-        <label htmlFor="description" className="p-5">
+        <TextInput name="title" type="text" />
+        <label htmlFor="description" className="py-5">
           Description
         </label>
-        <textarea name="description"></textarea>
-        <button type="submit">Save</button>
-      </form>
-    </main>
+        <TextArea name="description" rows={20} />
+      </div>
+      <SuccessButton type="submit">Save</SuccessButton>
+    </form>
   );
 }

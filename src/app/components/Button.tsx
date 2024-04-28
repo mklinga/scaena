@@ -11,11 +11,11 @@ function getStyleClasses(style: StyleOption): string {
   }
 }
 
-function ButtonInternal({ icon, children, style }: Props & { style: StyleOption }) {
+function ButtonInternal({ icon, children, style, ...rest }: Props & { style: StyleOption }) {
   const styleClasses = getStyleClasses(style);
 
   return (
-    <button className={`${styleClasses} flex px-4 py-2 border rounded`}>
+    <button className={`${styleClasses} flex px-4 py-2 border rounded`} {...rest}>
       {icon}
       {children}
     </button>
@@ -24,8 +24,9 @@ function ButtonInternal({ icon, children, style }: Props & { style: StyleOption 
 
 interface Props {
   children: ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   icon?: ReactNode;
+  type?: HTMLButtonElement['type'];
 }
 
 export const SuccessButton = (props: Props) => <ButtonInternal {...props} style="success" />;

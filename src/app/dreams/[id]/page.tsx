@@ -1,3 +1,4 @@
+import { DreamRenderer } from '@/app/components/DreamRenderer';
 import { H1 } from '@/app/components/Headers';
 import { DreamDto } from '@/types';
 import { DeleteButton } from './DeleteButton';
@@ -21,7 +22,9 @@ export default async function DreamPage({ params }: { params: { id: number } }) 
         <H1>{dream.title}</H1>
         <DeleteButton id={params.id} />
       </div>
-      <div>{dream.description}</div>
+      <div>
+        <DreamRenderer content={dream.description} />
+      </div>
     </div>
   );
 }
