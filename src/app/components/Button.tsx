@@ -28,6 +28,5 @@ interface Props {
   icon?: ReactNode;
 }
 
-export function SuccessButton(props: Props) {
-  return <ButtonInternal {...props} style="success" />;
-}
+export const SuccessButton = (props: Props) => <ButtonInternal {...props} style="success" />;
+export const DangerButton = (props: Props) => <ButtonInternal {...props} style="danger" />;

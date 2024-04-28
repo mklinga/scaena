@@ -17,7 +17,7 @@ export default async function DreamPage({ params }: { params: { id: number } }) 
 
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <H1>{dream.title}</H1>
         <DeleteButton id={params.id} />
       </div>
