@@ -16,12 +16,12 @@ export default async function DreamPage({ params }: { params: { id: number } }) 
   const dream = await getDream(params.id);
 
   return (
-    <main className="min-h-screen p-24">
-      <div>
+    <div>
+      <div className="flex justify-between">
         <H1>{dream.title}</H1>
         <DeleteButton id={params.id} />
       </div>
-      <p>{dream.description}</p>
-    </main>
+      <div>{dream.description}</div>
+    </div>
   );
 }

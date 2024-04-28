@@ -13,7 +13,7 @@ export default async function DreamsLayout({ children }: { children: ReactNode }
         <div className="basis-1/4">
           <DreamList dreams={dreams} />
         </div>
-        <div>{children}</div>
+        <div className="flex-grow">{children}</div>
       </div>
     </main>
   );
