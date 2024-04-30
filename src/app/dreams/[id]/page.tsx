@@ -1,5 +1,6 @@
 import { DreamRenderer } from '@/app/components/DreamRenderer';
 import { H1 } from '@/app/components/Headers';
+import TabView from '@/app/components/TabView';
 import { DreamDto } from '@/types';
 import { DeleteButton } from './DeleteButton';
 
@@ -16,15 +17,34 @@ async function getDream(id: number): Promise<DreamDto> {
 export default async function DreamPage({ params }: { params: { id: number } }) {
   const dream = await getDream(params.id);
 
+  const tabs = [
+    {
+      id: 'draft',
+      title: 'Draft',
+      content: (
+        <div>
+          <DreamRenderer content={dream.description} />
+        </div>
+      ),
+    },
+    {
+      id: 'dream',
+      title: 'Dream',
+      content: (
+        <div>
+          <DreamRenderer content={dream.description} />
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div>
       <div className="flex justify-between items-center">
         <H1>{dream.title}</H1>
         <DeleteButton id={params.id} />
       </div>
-      <div>
-        <DreamRenderer content={dream.description} />
-      </div>
+      <TabView tabs={tabs} defaultValue={dream.description ? 'dream' : 'draft'} />
     </div>
   );
 }
