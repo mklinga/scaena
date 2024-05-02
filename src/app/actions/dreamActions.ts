@@ -11,3 +11,15 @@ export async function deleteDream(id: number) {
 
   revalidateTag('dreams');
 }
+
+export async function createDream(formData: FormData) {
+  const dreamDto = { title: formData.get('title'), draft: formData.get('draft') };
+
+  const result = await fetch('http://localhost:8080/dreams', {
+    method: 'POST',
+    body: JSON.stringify(dreamDto),
+    headers: { 'Content-type': 'application/json' },
+  });
+
+  revalidateTag('dreams');
+}

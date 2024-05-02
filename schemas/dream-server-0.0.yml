@@ -16,6 +16,21 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/DreamDto'
+    post:
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DreamDto'
+        required: true
+      responses:
+        "200":
+          description: create 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DreamDto'
   /dreams/{id}:
     get:
       operationId: one
@@ -33,21 +48,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DreamDto'
-  /hello:
-    get:
-      operationId: index_1
+    delete:
+      operationId: delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
       responses:
         "200":
-          description: index_1 200 response
-          content:
-            text/plain:
-              schema:
-                type: string
+          description: delete 200 response
 components:
   schemas:
     DreamDto:
       required:
+      - date
       - description
+      - draft
       - id
       - title
       type: object
@@ -55,7 +74,12 @@ components:
         id:
           type: integer
           format: int64
+        date:
+          type: string
+          format: date
         title:
+          type: string
+        draft:
           type: string
         description:
           type: string

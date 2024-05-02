@@ -7,12 +7,11 @@
 export interface paths {
   "/dreams": {
     get: operations["index"];
+    post: operations["create"];
   };
   "/dreams/{id}": {
     get: operations["one"];
-  };
-  "/hello": {
-    get: operations["index_1"];
+    delete: operations["delete"];
   };
 }
 
@@ -23,7 +22,10 @@ export interface components {
     DreamDto: {
       /** Format: int64 */
       id: number;
+      /** Format: date */
+      date: string;
       title: string;
+      draft: string;
       description: string;
     };
   };
@@ -50,6 +52,21 @@ export interface operations {
       };
     };
   };
+  create: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["DreamDto"];
+      };
+    };
+    responses: {
+      /** @description create 200 response */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DreamDto"];
+        };
+      };
+    };
+  };
   one: {
     parameters: {
       path: {
@@ -65,13 +82,16 @@ export interface operations {
       };
     };
   };
-  index_1: {
+  delete: {
+    parameters: {
+      path: {
+        id: number;
+      };
+    };
     responses: {
-      /** @description index_1 200 response */
+      /** @description delete 200 response */
       200: {
-        content: {
-          "text/plain": string;
-        };
+        content: never;
       };
     };
   };
